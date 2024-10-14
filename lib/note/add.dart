@@ -1,4 +1,3 @@
-
 // ignore_for_file: body_might_complete_normally_nullable, avoid_print, use_build_context_synchronously, unused_local_variable
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -9,24 +8,24 @@ import 'package:my_app/component/customButtonAuth.dart';
 import 'package:my_app/note/view.dart';
 
 class AddNote extends StatefulWidget {
- final String docid;
- const AddNote({Key? key, required this.docid}) : super(key: key);
- @override
- State<AddNote> createState() => _AddNoteState();
+  final String docid;
+  const AddNote({Key? key, required this.docid}) : super(key: key);
+  @override
+  State<AddNote> createState() => _AddNoteState();
 }
 
 class _AddNoteState extends State<AddNote> {
- // GlobalKey is used to access the form and validate its fields.
- GlobalKey<FormState> formstate = GlobalKey<FormState>();
+  // GlobalKey is used to access the form and validate its fields.
+  GlobalKey<FormState> formstate = GlobalKey<FormState>();
 
- // TextEditingController is used to retrieve the current value of a TextField.
- TextEditingController note = TextEditingController();
+  // TextEditingController is used to retrieve the current value of a TextField.
+  TextEditingController note = TextEditingController();
 
- // isLoading is a boolean variable to check if the data is being added to Firestore.
- bool isLoading = false;
+  // isLoading is a boolean variable to check if the data is being added to Firestore.
+  bool isLoading = false;
 
- // addNote function is responsible for adding data to Firestore.
- addNote() async {
+  // addNote function is responsible for adding data to Firestore.
+  addNote() async {
     // Get a reference to the note collection in Firestore.
     CollectionReference collectionNote = FirebaseFirestore.instance
         .collection('categories')
@@ -46,8 +45,7 @@ class _AddNoteState extends State<AddNote> {
 
         // Navigate to the NoteView page.
         Navigator.of(context).push(MaterialPageRoute(
-            builder: (context) => NoteView(categoryid: widget.docid))
-        );
+            builder: (context) => NoteView(categoryid: widget.docid)));
       } catch (e) {
         // If an error occurs, set isLoading back to false and print the error.
         isLoading = false;
@@ -55,18 +53,19 @@ class _AddNoteState extends State<AddNote> {
         print("Error $e");
       }
     }
- }
+  }
 
- // dispose function is used to clean up resources when the widget is removed from the widget tree.
- @override
- void dispose() {
+//
+  // dispose function is used to clean up resources when the widget is removed from the widget tree.
+  @override
+  void dispose() {
     note.dispose();
     super.dispose();
- }
+  }
 
- // build function is used to create the widget tree.
- @override
- Widget build(BuildContext context) {
+  // build function is used to create the widget tree.
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -79,7 +78,7 @@ class _AddNoteState extends State<AddNote> {
             child: isLoading
                 ? const Center(child: CircularProgressIndicator())
                 : Column(
-                   children: [
+                    children: [
                       Container(
                         padding: const EdgeInsets.symmetric(
                             vertical: 20, horizontal: 25),
@@ -99,12 +98,14 @@ class _AddNoteState extends State<AddNote> {
                           addNote();
                         },
                       ),
-                      Padding(padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom))
-                   ],
+                      Padding(
+                          padding: EdgeInsets.only(
+                              bottom: MediaQuery.of(context).viewInsets.bottom))
+                    ],
                   )),
       ),
     );
- }
+  }
 }
 //
 //This code adds a note to a Firestore collection. The note includes the note text and the user ID. The note is added to the "note" subcollection of the "categories" collection in Firestore. The user is then navigated to the NoteView page..</s>
