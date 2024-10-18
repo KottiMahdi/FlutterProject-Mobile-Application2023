@@ -55,7 +55,7 @@ class _AddNoteState extends State<AddNote> {
     }
   }
 
-//
+////
   // dispose function is used to clean up resources when the widget is removed from the widget tree.
   @override
   void dispose() {
